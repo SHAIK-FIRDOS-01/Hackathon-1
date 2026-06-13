@@ -1,0 +1,13 @@
+{
+  "name": "feedflow-engine",
+  "version": "1.0.0",
+  "description": "Headless browser automation engine mockup for FeedFlow",
+  "main": "engine.js",
+  "scripts": {
+    "start": "node engine.js"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  },
+  "private": true
+}
