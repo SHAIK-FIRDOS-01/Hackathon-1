@@ -60,31 +60,44 @@ Ensure you have the following installed:
    cd Hackathon-1
    ```
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Configure Environment Variables:**
-   Create a `.env` file in the root of your project and add your Supabase credentials:
+2. **Configure Environment Variables:**
+   Create a `.env` file in the `frontend` folder of your project and add your Supabase credentials:
    ```env
    EXPO_PUBLIC_SUPABASE_URL=your-supabase-url
    EXPO_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
    ```
 
-### Running the App
+### Running the App (Frontend)
 
-Start the Expo development server:
+1. **Navigate to the frontend folder and install dependencies:**
+   ```bash
+   cd frontend
+   npm install
+   ```
 
-```bash
-npm start
-```
+2. **Start the Expo development server:**
+   ```bash
+   npm start
+   ```
+   This will open the Expo developer tools in your browser. You can then:
+   - Scan the QR code with the **Expo Go** app (Android) or the Camera app (iOS) to view it on a device.
+   - Press `i` to open in an iOS simulator.
+   - Press `a` to open in an Android emulator.
+   - Press `w` to open in a web browser.
 
-This will open the Expo developer tools in your browser. You can then:
-- Scan the QR code with the **Expo Go** app (Android) or the Camera app (iOS) to view it on a physical device.
-- Press `i` to open in an iOS simulator.
-- Press `a` to open in an Android emulator.
-- Press `w` to open in a web browser.
+### Running the Phantom Engine (Backend)
+
+1. **Navigate to the backend folder and install dependencies:**
+   ```bash
+   cd backend
+   npm install
+   ```
+
+2. **Run the automation scroller bot:**
+   ```bash
+   node engine.js
+   ```
+   This will launch a non-headless mobile browser simulating Instagram explore feed scrolling under your defined algorithmic preferences.
 
 ---
 
@@ -92,17 +105,21 @@ This will open the Expo developer tools in your browser. You can then:
 
 ```text
 Hackathon-1/
-├── app/                  # Expo Router file-based routing
-│   ├── (auth)/           # Authentication screens (Login, Onboarding)
-│   ├── (tabs)/           # Main application tabs (Dashboard, Analytics, Settings)
-│   └── _layout.tsx       # Root layout
-├── assets/               # Images, fonts, and icons
-├── components/           # Reusable UI components
-├── context/              # React Context providers (Auth, Automation)
-├── hooks/                # Custom React hooks
-├── lib/                  # External library configurations (e.g., Supabase)
-├── types/                # TypeScript type definitions
-└── utils/                # Helper functions and utilities
+├── frontend/             # React Native Expo Frontend Application
+│   ├── app/              # Expo Router file-based routing
+│   │   ├── (auth)/       # Authentication screens (Login, Onboarding)
+│   │   ├── (tabs)/       # Main application tabs (Dashboard, Analytics, Settings)
+│   │   └── _layout.tsx   # Root layout
+│   ├── assets/           # Images, fonts, and icons
+│   ├── components/       # Reusable UI components
+│   ├── context/          # React Context providers (Auth, Automation)
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # External library configurations (e.g., Supabase)
+│   ├── types/            # TypeScript type definitions
+│   └── utils/            # Helper functions and utilities
+└── backend/              # Node.js Puppeteer Automation Backend Engine
+    ├── engine.js         # Headless browser scroller automation bot script
+    └── package.json      # Backend configuration & Puppeteer dependency
 ```
 
 ---
