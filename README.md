@@ -1,219 +1,124 @@
-# FeedFlow 🌊
+<div align="center">
+  <img src="assets/icon.png" alt="App Icon" width="120" />
+  <h1>🚀 Hackathon Project</h1>
+  <p>A modern, performant, and beautifully designed mobile application built for the hackathon.</p>
 
-> A lightweight React Native mobile application that helps users personalize their Instagram experience by running an automated background system that reinforces content preferences.
+  <p>
+    <a href="https://reactnative.dev/"><img src="https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React Native" /></a>
+    <a href="https://expo.dev/"><img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo" /></a>
+    <a href="https://supabase.com/"><img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase" /></a>
+    <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" /></a>
+  </p>
+</div>
 
----
+## 📖 Overview
 
-## ✨ Overview
+This Hackathon project is a cross-platform mobile application powered by **Expo** and **React Native**. It features a robust authentication flow seamlessly integrated with **Supabase**, intuitive tabbed navigation using **Expo Router**, and a sleek user interface styled with **NativeWind** (Tailwind CSS).
 
-FeedFlow is a premium mobile app built with **Expo**, **Expo Router**, **NativeWind (Tailwind CSS)**, and **Supabase**. The app allows users to define content preferences and runs a smart automation layer in the background to continuously curate and reinforce those preferences on Instagram.
-
----
-
-## 🚀 Tech Stack
-
-| Technology | Purpose |
-|---|---|
-| [Expo SDK 56](https://docs.expo.dev/versions/v56.0.0/) | React Native framework & tooling |
-| [Expo Router v4](https://docs.expo.dev/router/introduction/) | File-based navigation |
-| [NativeWind v4](https://www.nativewind.dev/) | Tailwind CSS for React Native |
-| [Supabase](https://supabase.com/) | Backend-as-a-Service (Auth, DB, Realtime) |
-| [TypeScript](https://www.typescriptlang.org/) | Strict type safety |
-| [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/) | Smooth animations |
+The application currently features a specialized **Automation Dashboard** to track tasks and actions, providing a foundation for scalable, high-performance mobile solutions.
 
 ---
 
-## 📁 Project Architecture
+## ✨ Features
 
-```
-.
-├── app/                          # Expo Router file-based navigation
-│   ├── _layout.tsx               # Root layout — wraps all global providers
-│   ├── (auth)/                   # Authentication flow (unauthenticated users)
-│   │   ├── _layout.tsx
-│   │   ├── login.tsx             # Login screen
-│   │   └── onboarding.tsx        # Onboarding screen
-│   └── (tabs)/                   # Main tab navigation (authenticated users)
-│       ├── _layout.tsx
-│       ├── index.tsx             # Dashboard / Automation Status
-│       ├── preferences.tsx       # User content preferences
-│       ├── analytics.tsx         # Automation analytics
-│       └── settings.tsx          # App settings
-│
-├── components/                   # Reusable UI components
-│   ├── ui/
-│   │   ├── Button.tsx            # Styled button atom
-│   │   ├── Card.tsx              # Card container atom
-│   │   ├── Input.tsx             # Text input atom
-│   │   └── Text.tsx              # Themed text atom
-│   └── CustomBottomSheet.tsx     # Reusable bottom sheet molecule
-│
-├── context/                      # Global state via React Context API
-│   ├── AuthContext.tsx           # Auth state synced to Supabase session
-│   └── AutomationContext.tsx     # Automation engine state & controls
-│
-├── hooks/                        # Custom React hooks
-│   ├── useSupabase.ts            # Hook to access auth context/session
-│   └── useHaptics.ts             # Haptic feedback abstraction
-│
-├── lib/                          # Third-party service clients
-│   └── supabase.ts               # Supabase JS client (with AsyncStorage)
-│
-├── types/                        # Shared TypeScript interfaces
-│   └── index.ts
-│
-├── utils/                        # Shared helper functions
-│   └── helpers.ts
-│
-├── tailwind.config.js            # NativeWind / Tailwind configuration
-├── metro.config.js               # Metro bundler with NativeWind plugin
-├── global.css                    # Tailwind directive entrypoint
-└── nativewind-env.d.ts           # TypeScript declarations for className props
-```
+- **🔐 Secure Authentication:** Complete sign-up, login, and onboarding flows powered by Supabase.
+- **🧭 Dynamic Routing:** File-based navigation via Expo Router for a seamless user experience.
+- **🎨 Beautiful UI:** Styled with NativeWind, offering a fully customizable and modern aesthetic.
+- **⚙️ Automation Tracker:** A dedicated dashboard to monitor and manage automated tasks and completed actions.
+- **📱 Cross-Platform:** Write once, deploy anywhere (iOS, Android, and Web).
+- **🗂️ State Management:** Efficient global state handling using React Context API.
 
 ---
 
-## 🎨 Design System
+## 🛠️ Tech Stack
 
-The app uses a **dark-mode-first** color palette built on deep neutral tones with sleek blue and violet accents.
-
-| Token | Color | Hex |
-|---|---|---|
-| `background` | Zinc 950 | `#09090b` |
-| `foreground` | Zinc 50 | `#fafafa` |
-| `card` | Zinc 900 | `#18181b` |
-| `secondary` | Zinc 800 | `#27272a` |
-| `primary` | Blue 500 | `#3b82f6` |
-| `accent` | Violet 500 | `#8b5cf6` |
+- **Framework:** [React Native](https://reactnative.dev/) & [Expo](https://expo.dev/)
+- **Routing:** [Expo Router](https://docs.expo.dev/router/introduction/)
+- **Styling:** [NativeWind](https://www.nativewind.dev/) (Tailwind CSS)
+- **Backend as a Service:** [Supabase](https://supabase.com/)
+- **Language:** TypeScript
 
 ---
 
-## 🔑 TypeScript Types
+## 🚀 Getting Started
 
-All core domain models are declared in [`types/index.ts`](./types/index.ts):
-
-```ts
-// Connection status for the Instagram integration
-type InstagramConnectionStatus = 'connected' | 'disconnected' | 'processing';
-
-// User's defined content preferences
-interface UserPreference {
-  id: string;
-  user_id: string;
-  keywords: string[];
-  target_sentiment: 'positive' | 'neutral' | 'any';
-  updated_at: string;
-}
-
-// Log entry for each automation action performed
-interface AutomationLog {
-  id: string;
-  user_id: string;
-  action_type: 'like' | 'comment' | 'follow' | 'unfollow';
-  target_url?: string;
-  status: 'success' | 'failure' | 'pending';
-  timestamp: string;
-}
-```
-
----
-
-## ⚙️ Global State
-
-### `AuthContext`
-- Listens to `supabase.auth.onAuthStateChange` on mount.
-- Exposes `session`, `user`, and `loading` state.
-- Accessed via the `useSupabase()` hook.
-
-### `AutomationContext`
-- Manages `isActive`, `lastSyncTime`, `completedActionsCount`.
-- Provides `toggleAutomation()` and `triggerMockTask()` methods.
-- Designed for easy extension into a real background task system.
-
----
-
-## 🛠️ Getting Started
+Follow these steps to set up the project locally on your machine.
 
 ### Prerequisites
-- Node.js 18+
-- Expo CLI (`npm install -g expo-cli`)
-- Expo Go app on your device or an Android/iOS simulator
+
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v18 or newer recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+- Expo Go app on your physical device (or an iOS Simulator/Android Emulator)
 
 ### Installation
 
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/SHAIK-FIRDOS-01/Hackathon-1.git
+   cd Hackathon-1
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables:**
+   Create a `.env` file in the root of your project and add your Supabase credentials:
+   ```env
+   EXPO_PUBLIC_SUPABASE_URL=your-supabase-url
+   EXPO_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+   ```
+
+### Running the App
+
+Start the Expo development server:
+
 ```bash
-# 1. Clone the repository
-git clone https://github.com/SHAIK-FIRDOS-01/Hackathon-1.git
-cd Hackathon-1
-
-# 2. Install dependencies
-npm install --legacy-peer-deps
-
-# 3. Set up environment variables
-# Create a .env file in the root directory:
-EXPO_PUBLIC_SUPABASE_URL=your_supabase_project_url
-EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-
-# 4. Start the development server
-npx expo start
+npm start
 ```
 
-### Running on Device
+This will open the Expo developer tools in your browser. You can then:
+- Scan the QR code with the **Expo Go** app (Android) or the Camera app (iOS) to view it on a physical device.
+- Press `i` to open in an iOS simulator.
+- Press `a` to open in an Android emulator.
+- Press `w` to open in a web browser.
 
-```bash
-# Android
-npx expo start --android
+---
 
-# iOS
-npx expo start --ios
+## 📂 Project Structure
 
-# Web (development preview)
-npx expo start --web
+```text
+Hackathon-1/
+├── app/                  # Expo Router file-based routing
+│   ├── (auth)/           # Authentication screens (Login, Onboarding)
+│   ├── (tabs)/           # Main application tabs (Dashboard, Analytics, Settings)
+│   └── _layout.tsx       # Root layout
+├── assets/               # Images, fonts, and icons
+├── components/           # Reusable UI components
+├── context/              # React Context providers (Auth, Automation)
+├── hooks/                # Custom React hooks
+├── lib/                  # External library configurations (e.g., Supabase)
+├── types/                # TypeScript type definitions
+└── utils/                # Helper functions and utilities
 ```
 
 ---
 
-## 🔐 Environment Variables
+## 🤝 Contributing
 
-Create a `.env` file in the project root. These are read by Expo at build time:
+Contributions are always welcome! If you have ideas for improvements, please feel free to fork the repository and submit a pull request.
 
-```env
-EXPO_PUBLIC_SUPABASE_URL=https://<your-project>.supabase.co
-EXPO_PUBLIC_SUPABASE_ANON_KEY=<your-anon-key>
-```
-
-> **Note:** Never commit your `.env` file. It is already included in `.gitignore`.
-
----
-
-## 📦 Key Dependencies
-
-```json
-{
-  "expo": "~56.0.11",
-  "expo-router": "~56.2.10",
-  "nativewind": "^4.2.5",
-  "tailwindcss": "^3.4.19",
-  "@supabase/supabase-js": "^2.108.1",
-  "@react-native-async-storage/async-storage": "^2.2.0",
-  "react-native-reanimated": "^4.3.1",
-  "react-native-safe-area-context": "~5.7.0",
-  "react-native-screens": "^4.25.2"
-}
-```
-
----
-
-## 🧪 Type Checking
-
-```bash
-npx tsc --noEmit
-```
-
-The project is configured with strict TypeScript and passes type checking with zero errors.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-MIT License — see [LICENSE](./LICENSE) for details.
+This project is open-source and available under the [MIT License](LICENSE).
